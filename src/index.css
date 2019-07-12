@@ -1,13 +1,117 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: bisque !important;
+  margin: 2% !important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.btn
+{
+    display:block;
+    border: none !important;
+    outline:none !important;
+}
+
+.btn:focus {
+  box-shadow: none !important;
+}
+
+.game-table {
+  height: 280px;
+  width: 280px;
+  margin: 0 auto;
+}
+
+.button-block {
+  width: 68px;
+  height: 68px;
+}
+
+.info-board {
+  width: 280px;
+  margin: 0 auto;
+}
+
+.image {
+  width: 30px;
+  height: 27px;
+  cursor: pointer;
+}
+
+tr {
+  border-bottom: 1px dotted black;
+}
+
+tr > td {
+  padding: 2px 15px;
+  font-size: 20px;
+  color: darkslategrey;
+}
+
+.add-scores {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(220, 220, 220, 0.5);
+  z-index: 9999;
+}
+
+.add-scores .form-submit {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 300px;
+  height: 200px;
+  background-color: slategrey;
+  border: 2px solid black;
+  text-align: center;
+  overflow: hidden;
+  padding-top: 25px;
+  display: block;
+  border-radius: 3px;
+}
+
+.add-scores .form-submit > p > input {
+  width: 90%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #000;
+  color: white;
+  padding: 2px 5px;
+}
+
+.add-scores .form-submit > p > input::placeholder {
+  color:white;
+  opacity: 0.5;
+}
+
+
+.add-scores .form-submit p:nth-child(2) {
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: left;
+  margin-left: 15px;
+}
+
+.sound {
+  top: 0;
+  left: 10px;
+}
+
+.time-list {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.scores-table h5 {
+  font-style: italic;
+  color: teal;
+}
+
+@media only screen and (max-width: 478px) {
+  tr > td {
+    font-size: 16px;
+  }
 }
