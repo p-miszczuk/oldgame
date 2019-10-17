@@ -3,11 +3,10 @@ body {
   margin: 2% !important;
 }
 
-.btn
-{
-    display:block;
-    border: none !important;
-    outline:none !important;
+.btn {
+  display: block;
+  border: none !important;
+  outline: none !important;
 }
 
 .btn:focus {
@@ -60,7 +59,7 @@ tr > td {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   width: 300px;
   height: 200px;
   background-color: slategrey;
@@ -83,10 +82,9 @@ tr > td {
 }
 
 .add-scores .form-submit > p > input::placeholder {
-  color:white;
+  color: white;
   opacity: 0.5;
 }
-
 
 .add-scores .form-submit p:nth-child(2) {
   font-size: 15px;
