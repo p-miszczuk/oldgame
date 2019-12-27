@@ -1,14 +1,14 @@
 import React from "react";
 import Timer from "./Timer";
-import ButtonReset from "./ResetButton";
 import Sound from "./Sound";
+import Button from "./Buttons/Button";
 
-const InformationBoard = (props) => (
-    <div className="my-4 position-relative info-board" >
-        <ButtonReset reset={props.reset} />
-        <Timer />
-        <Sound />
-    </div>
+const InformationBoard = ({ reset }) => (
+  <div className="my-4 position-relative info-board">
+    <Button onClick={reset} className="btn btn-success my-2" text="RESET" />
+    <Timer />
+    <Sound />
+  </div>
 );
 
 export default InformationBoard;

@@ -16,7 +16,7 @@ import { endGame, resetGame } from "./redux/reducers/scores/actions";
 
 class Squares extends React.Component {
   state = {
-    finishGame: 2,
+    finishGame: 14,
     btns: null,
     resetFlag: false
   };
@@ -40,7 +40,7 @@ class Squares extends React.Component {
         if (
           pos.x - item.posX <= 70 &&
           pos.x - item.posX >= -70 &&
-          (pos.y - item.posY <= 70 && pos.y - item.posY >= -70) &&
+          pos.y - item.posY <= 70 && pos.y - item.posY >= -70 &&
           pos.x - item.posX !== pos.y - item.posY &&
           pos.x - item.posX !== -(pos.y - item.posY)
         ) {
@@ -199,8 +199,5 @@ const mapDispatchToProps = {
   playTimeReset: resetGame
 };
 
-const ConnectApp = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Squares);
+const ConnectApp = connect(mapStateToProps, mapDispatchToProps)(Squares);
 export default ConnectApp;

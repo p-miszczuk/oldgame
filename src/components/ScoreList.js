@@ -17,13 +17,17 @@ const ScoreList = props => {
       <h5 className="mb-3">Najlepsi gracze:</h5>
       <table className="time-list d-inline">
         <tbody>
-          {list.map((item, index) => (
-            <tr key={item.id}>
-              <td>{index + 1}.</td>
-              <td>{item.nick}</td>
-              <td>{item.score}</td>
-            </tr>
-          ))}
+          {list.map((item, index) => {
+            if (index < 10)
+              return (
+                <tr key={item.id}>
+                  <td>{index + 1}.</td>
+                  <td>{item.nick}</td>
+                  <td>{item.score}</td>
+                </tr>
+              );
+            return null;
+          })}
         </tbody>
       </table>
     </div>

@@ -1,21 +1,20 @@
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 import React from "react";
 
-const mapStateToProps = ({time}) => {
-    return {...time}
+class Timer extends React.Component {
+  render() {
+    const { seconds, milseconds, minutes } = this.props;
+    const gameTime = `${minutes < 10 ? "0" : ""}${this.props.minutes} : ${
+      seconds < 10 ? "0" : ""
+    }${seconds} : ${milseconds < 10 ? "0" : ""}${milseconds}`;
+    return <div className="h5">{gameTime}</div>;
+  }
 }
 
-class Time extends React.Component {
-    
-    render() {
-        const gameTime = `${this.props.minutes < 10 ? "0": ""}${this.props.minutes} : ${this.props.seconds < 10 ? "0": ""}${this.props.seconds} : ${this.props.milseconds < 10 ? "0" : ""}${this.props.milseconds}`; 
-        return (
-            <div className="h5">
-                {gameTime}
-            </div>
-        )
-    }
-}
+const mapStateToProps = ({ time }) => ({
+  seconds: time.seconds,
+  milseconds: time.milseconds,
+  minutes: time.minutes
+});
 
-const Timer = connect(mapStateToProps)(Time);
-export default Timer;
+export default connect(mapStateToProps)(Timer);
