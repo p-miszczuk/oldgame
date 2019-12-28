@@ -5,7 +5,12 @@ import Button from "./Buttons/Button";
 
 const InformationBoard = ({ reset }) => (
   <div className="my-4 position-relative info-board">
-    <Button onClick={reset} className="btn btn-success my-2" text="RESET" />
+    <Button
+      onClick={reset}
+      style={{ margin: "0 auto" }}
+      className="btn btn-success my-2"
+      text="RESET"
+    />
     <Timer />
     <Sound />
   </div>

@@ -1,9 +1,10 @@
 export const DB_CONFIG = {
-    apiKey: "AIzaSyDoYiNj3Og7rME7vISCntFp4Jj0xG46hCQ",
-    authDomain: "game-redux4.firebaseapp.com",
-    databaseURL: "https://game-redux4.firebaseio.com",
-    projectId: "game-redux4",
-    storageBucket: "",
-    messagingSenderId: "386081888583",
-    appId: "1:386081888583:web:f6d97eff7e22c763"
-  };
+  apiKey: "AIzaSyAFKyp1YTvQ3I6VFinqqJRGCIukRv3JsW4",
+  authDomain: "oldgame-2019.firebaseapp.com",
+  databaseURL: "https://oldgame-2019.firebaseio.com",
+  projectId: "oldgame-2019",
+  storageBucket: "oldgame-2019.appspot.com",
+  messagingSenderId: "213665284307",
+  appId: "1:213665284307:web:7af8d88c6fdf57d2799426",
+  measurementId: "G-PX14KREZ07"
+};

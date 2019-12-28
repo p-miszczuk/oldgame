@@ -8,7 +8,7 @@ const ButtonsBoard = ({ board, click }) => {
         <Button
           className="btn button position-absolute text-light button-block"
           onClick={e => click(item, e)}
-          style={{ top: item.posY, left: item.posX }}
+          style={{ top: item.posY, left: item.posX, cursor: "pointer" }}
           key={item.id}
           text={item.id}
         />
