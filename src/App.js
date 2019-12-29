@@ -16,7 +16,7 @@ import { endGame, resetGame } from "./redux/reducers/scores/actions";
 
 class Squares extends React.Component {
   state = {
-    finishGame: 15,
+    finishGame: 2,
     btns: null,
     resetFlag: false
   };

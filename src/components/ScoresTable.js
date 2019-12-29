@@ -68,9 +68,6 @@ const mapDispatchToProps = {
   closeModal: resetGame
 };
 
-const GameScores = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GameScore);
+const GameScores = connect(mapStateToProps, mapDispatchToProps)(GameScore);
 
 export default GameScores;

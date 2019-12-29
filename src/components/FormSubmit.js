@@ -7,28 +7,44 @@ const Form = ({ submit, data, close, change }) => {
     return (
       <div className="add-scores">
         <form className="form-submit" onSubmit={submit}>
-          <Input
-            name="nick"
-            type="text"
-            onChange={change}
-            placeholder="podaj imię/nick"
-            value={data.nick}
-            style={{ background: "transparent" }}
-            autoComplete={true}
-            score={data.score}
-            finish={data.finish}
-          />
-
-          <Button
-            className="btn btn-success mt-4"
-            type="submit"
-            text="Zapisz"
-          />
-          <Button
-            className="btn btn-danger ml-5 mt-4"
-            onClick={close}
-            text="Nie zapisuj"
-          />
+          <div>
+            <Input
+              name="nick"
+              type="text"
+              onChange={change}
+              placeholder="podaj imię/nick"
+              value={data.nick}
+              style={{
+                background: "transparent",
+                border: 0,
+                outline: "none",
+                borderBottom: "2px solid white"
+              }}
+              autoComplete={true}
+              score={data.score}
+              finish={data.finish}
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              paddingTop: "20px"
+            }}
+          >
+            <Button
+              style={{ minWidth: "120px" }}
+              className="btn btn-success"
+              type="submit"
+              text="Zapisz"
+            />
+            <Button
+              style={{ minWidth: "120px" }}
+              className="btn btn-danger"
+              onClick={close}
+              text="Nie zapisuj"
+            />
+          </div>
         </form>
       </div>
     );
