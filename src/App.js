@@ -14,9 +14,10 @@ import {
 } from "./redux/reducers/time/actions";
 import { endGame, resetGame } from "./redux/reducers/scores/actions";
 
+const FINISH_GAME = 15;
+
 class Squares extends React.Component {
   state = {
-    finishGame: 2,
     btns: null,
     resetFlag: false
   };
@@ -70,7 +71,7 @@ class Squares extends React.Component {
   };
 
   checkEnd = () => {
-    const { btns, finishGame } = this.state;
+    const { btns } = this.state;
     let counter = 0;
     btns.forEach(item => {
       const { left, top } = item.style;
@@ -106,7 +107,7 @@ class Squares extends React.Component {
         counter++;
     });
 
-    if (counter >= finishGame) return true;
+    if (counter >= FINISH_GAME) return true;
     return false;
   };
 

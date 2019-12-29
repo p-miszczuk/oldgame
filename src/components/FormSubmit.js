@@ -18,7 +18,8 @@ const Form = ({ submit, data, close, change }) => {
                 background: "transparent",
                 border: 0,
                 outline: "none",
-                borderBottom: "2px solid white"
+                borderBottom: "2px solid white",
+                color: "red"
               }}
               autoComplete={true}
               score={data.score}
