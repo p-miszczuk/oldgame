@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { pos } from "./data/data";
+import Button from "./components/Buttons/Button";
 import InformationBoard from "./components/InfoBoard";
 import ButtonsBoard from "./components/ButtonsBoard";
 import GameScores from "./components/ScoresTable";
@@ -13,11 +14,14 @@ import {
   startGame
 } from "./redux/reducers/time/actions";
 import { endGame, resetGame } from "./redux/reducers/scores/actions";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 const FINISH_GAME = 15;
 
 class Squares extends React.Component {
   state = {
+    auth: false,
     btns: null,
     resetFlag: false
   };
@@ -28,7 +32,7 @@ class Squares extends React.Component {
     const { time } = this.props;
     e.preventDefault();
 
-    this.resetButtons();
+    !!this.state.btns && this.resetButtons();
 
     if (item.id !== " ") {
       e.target.style.backgroundColor = "red";
@@ -65,7 +69,7 @@ class Squares extends React.Component {
 
   handleReset = () => {
     const { reset, playTimeReset } = this.props;
-    this.resetButtons();
+    !!this.state.btns && this.resetButtons();
     reset();
     playTimeReset();
   };
@@ -116,13 +120,6 @@ class Squares extends React.Component {
     btns.forEach(item => (item.style.backgroundColor = "#008080"));
   };
 
-  componentDidMount() {
-    this.setState({
-      btns: document.querySelectorAll(".button"),
-      resetFlag: true
-    });
-  }
-
   timer = () => {
     this.intervalID = setInterval(() => {
       const {
@@ -145,7 +142,7 @@ class Squares extends React.Component {
             time.milseconds
           }`;
           playTimeFinish(gameTime);
-          this.resetButtons();
+          !!this.state.btns && this.resetButtons();
         }
         if (time.milseconds >= 99) seconds();
         if (time.seconds >= 59) minutes();
@@ -155,10 +152,18 @@ class Squares extends React.Component {
   };
 
   componentDidUpdate() {
-    const { resetFlag } = this.state;
+    const { resetFlag, btns, auth } = this.state;
+
     if (resetFlag) {
-      this.resetButtons();
+      !!btns && this.resetButtons();
       this.setState({ resetFlag: false });
+    }
+
+    if (auth && !btns) {
+      this.setState({
+        btns: document.querySelectorAll(".button"),
+        resetFlag: true
+      });
     }
   }
 
@@ -166,17 +171,79 @@ class Squares extends React.Component {
     clearInterval(this.intervalID);
   }
 
+  handleLogin = () => {
+    if (!this.state.auth) {
+      firebase
+        .auth()
+        .signInAnonymously()
+        .then(() => {
+          this.setState({ auth: true });
+        })
+        .catch(error => console.log(error.message));
+    } else {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.setState({ auth: false, btns: null, resetFlag: false });
+          clearInterval(this.intervalID);
+          const { reset, playTimeReset } = this.props;
+          reset();
+          playTimeReset();
+        })
+        .catch(error => console.log(error));
+    }
+  };
+
   render() {
     const { board } = this.props;
 
+    if (!this.state.auth)
+      return (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column"
+          }}
+        >
+          <p>Witaj w Retro Game. </p>
+          <p>Ułóż kwadraty od 1 do 15 jak najszybciej.</p>
+          <p>Udanej zabawy.</p>
+          <Button
+            style={{
+              padding: "10px 15px",
+              borderRadius: "5px",
+              backgroundColor: "green",
+              borderColor: "green",
+              color: "#fff"
+            }}
+            onClick={this.handleLogin}
+            text={"Przejdź do gry"}
+          />
+        </div>
+      );
+
     return (
-      <div className="row">
+      <div className="row px-3">
+        <div style={{ width: "100%", paddingBottom: "30px" }}>
+          <Button
+            text={"Wyloguj z gry"}
+            style={{
+              width: "130px",
+              height: "40px",
+              borderRadius: "5px",
+              color: "#fff",
+              borderColor: "blue",
+              backgroundColor: "blue"
+            }}
+            onClick={this.handleLogin}
+          />
+        </div>
         <div className="col-sm-6 text-center">
           <InformationBoard reset={this.handleReset} />
-          <ButtonsBoard
-            board={board}
-            click={(item, e) => this.handleClick(item, e)}
-          />
+          <ButtonsBoard board={board} click={this.handleClick} />
         </div>
         <div className="col-sm-6 text-center">
           <GameScores />
